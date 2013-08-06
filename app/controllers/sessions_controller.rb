@@ -2,16 +2,22 @@ class SessionsController < ApplicationController
 
   def new
     @user = User.new
-
-    render :index
+    redirect_to users_path
   end
 
   def create
-    user = User.find_by(email: params[:session][:email].downcase)
-    @user.password = params[:password]
-    @user.save
+    @user = User.find_by_email(params[:session][:email].downcase)
+    if @user.try(:password) == params[:session][:password]
+      session[:user_id] = @user.id
+      redirect_to @user
+    else
+      # could flash errors here!
+      render 'new'
+    end
   end
 
   def destroy
+    session.clear
+    redirect_to users_path
   end
 end
