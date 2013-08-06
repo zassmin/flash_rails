@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130806005557) do
+ActiveRecord::Schema.define(:version => 20130806013021) do
 
   create_table "cards", :force => true do |t|
     t.string   "term"
@@ -43,7 +43,6 @@ ActiveRecord::Schema.define(:version => 20130806005557) do
   end
 
   create_table "users", :force => true do |t|
-    t.string   "user_name"
     t.string   "email"
     t.string   "password_hash"
     t.datetime "created_at",    :null => false
