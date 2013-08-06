@@ -1,4 +1,8 @@
+require 'bcrypt'
+
 class User < ActiveRecord::Base
+  attr_accessible :email, :password
+
   before_save { email.downcase! }
   
   has_many :rounds
@@ -19,16 +23,4 @@ class User < ActiveRecord::Base
     @password = Password.create(new_password)
     self.password_hash = @password
   end
-
-  def self.authenticate(email,password)
-    user = self.where(email: email)[0]
-
-    if user
-      if user.password == password
-        return user
-      end
-    end
-    return nil
-  end
-
 end
