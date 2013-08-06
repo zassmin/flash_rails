@@ -8,7 +8,7 @@
 </head>
 <body>
   <% if current_user %>
-    <%= link_to "log out", session_path(current_user) %>
+    <%= button_to "log out", session_path(current_user), {method: :delete} %>
   <% end %>
 <%= yield %>
 
