@@ -4,7 +4,6 @@ class User < ActiveRecord::Base
   has_secure_password
   validates :password, presence: true, length: { minimum: 6 }
 
-
   before_save { email.downcase! }
   
   has_many :rounds
