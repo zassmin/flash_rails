@@ -7,7 +7,7 @@ class SessionsController < ApplicationController
   end
 
   def create
-    @user = User.new(user_name: params[:user_name], email: params[:email])
+    user = User.find_by(email: params[:session][:email].downcase)
     @user.password = params[:password]
     @user.save
   end
